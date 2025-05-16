@@ -1,0 +1,92 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sliders personalizados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+    }
+    .slider-container {
+      margin-bottom: 2rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .etiqueta {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    .resultado {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <div class="etiqueta">Poco</div>
+    <input type="range" min="1" max="10" step="1" id="sliderPoco">
+    <div class="resultado" id="resultadoPoco"></div>
+  </div>
+
+  <div class="slider-container">
+    <div class="etiqueta">Moderadamente</div>
+    <input type="range" min="1" max="10" step="1" id="sliderModerado">
+    <div class="resultado" id="resultadoModerado"></div>
+  </div>
+
+  <div class="slider-container">
+    <div class="etiqueta">Mucho</div>
+    <input type="range" min="1" max="10" step="1" id="sliderMucho">
+    <div class="resultado" id="resultadoMucho"></div>
+  </div>
+
+  <div class="slider-container">
+    <div class="etiqueta">Demasiado</div>
+    <input type="range" min="1" max="10" step="1" id="sliderDemasiado">
+    <div class="resultado" id="resultadoDemasiado"></div>
+  </div>
+
+  <script>
+    function mapearValor(valorUsuario, rangoInicio, rangoFin) {
+      const porcentaje = (valorUsuario - 1) / 9;
+      return Math.round(rangoInicio + porcentaje * (rangoFin - rangoInicio));
+    }
+
+    function configurarSlider(idSlider, idResultado, rangoInicio, rangoFin) {
+      const slider = document.getElementById(idSlider);
+      const resultado = document.getElementById(idResultado);
+
+      function actualizar() {
+        const valorUsuario = parseInt(slider.value);
+        const valorReal = mapearValor(valorUsuario, rangoInicio, rangoFin);
+        resultado.textContent = `Valor elegido (visible): ${valorUsuario} → Valor real: ${valorReal}`;
+      }
+
+      slider.addEventListener('input', actualizar);
+      actualizar();
+    }
+
+    configurarSlider("sliderPoco", "resultadoPoco", 0, 20);
+    configurarSlider("sliderModerado", "resultadoModerado", 21, 40);
+    configurarSlider("sliderMucho", "resultadoMucho", 41, 60);
+    configurarSlider("sliderDemasiado", "resultadoDemasiado", 61, 80);
+  </script>
+
+</body>
+</html>
+</pre>
+        </body>
+    </html>
